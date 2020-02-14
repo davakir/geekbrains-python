@@ -9,15 +9,22 @@ class Matrix:
         return '\n'.join(result)
 
     def __getitem__(self, item):
-        return self.data
+        return self.data[item]
+
+    def __len__(self):
+        return len(self.data)
 
     def __add__(self, another_matrix):
-        sum_matrix = []
+        dimension_self_x, dimension_another_x = len(self.data[0]), len(another_matrix[0])
+        dimension_self_y, dimension_another_y = len(self.data), len(another_matrix)
+        
+        if dimension_self_x != dimension_another_x or dimension_self_y != dimension_another_y:
+          return []
 
-        for row_key, row_value in enumerate(self.data):
-            for cell_key, cell_value in enumerate(self.data[row_key]):
-                print(self.data[row_key][cell_key])
-                print(another_matrix[10])
+        sum_matrix = [[0 for _ in range(dimension_self_x)] for _ in range(dimension_self_y)]
+
+        for row_key in range(dimension_self_y):
+            for cell_key in range(dimension_self_x):
                 sum_matrix[row_key][cell_key] = self.data[row_key][cell_key] + another_matrix[row_key][cell_key]
 
         return sum_matrix
@@ -26,6 +33,6 @@ class Matrix:
 matrix = Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
 print(matrix, '\n')
 matrix2 = Matrix([[2, 3, 4], [5, 6, 7], [8, 9, 10]])
-print(matrix2)
+print(matrix2, '\n')
 matrix_result = Matrix(matrix + matrix2)
-# print(matrix_result)
+print(matrix_result)
