@@ -1,10 +1,12 @@
 from abc import ABC, abstractmethod
 from math import ceil
 
+
 class AbstractClothes(ABC):
     @abstractmethod
     def get_tissue_consumption(self):
         pass
+
 
 class Coat(AbstractClothes):
     def __init__(self, size):
@@ -17,6 +19,7 @@ class Coat(AbstractClothes):
     def get_tissue_consumption(self):
         return ceil(self.size / 6.5 + 0.5)
 
+
 class Suit(AbstractClothes):
     def __init__(self, length):
         self.__length = length
@@ -27,6 +30,7 @@ class Suit(AbstractClothes):
 
     def get_tissue_consumption(self):
         return ceil(2 * self.length + 0.3)
+
 
 coat = Coat(46.5)
 print(f'Расход ткани на пальто: {coat.get_tissue_consumption()} метров')

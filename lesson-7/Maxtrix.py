@@ -15,11 +15,12 @@ class Matrix:
         return len(self.data)
 
     def __add__(self, another_matrix):
+        print(__name__)
         dimension_self_x, dimension_another_x = len(self.data[0]), len(another_matrix[0])
         dimension_self_y, dimension_another_y = len(self.data), len(another_matrix)
         
         if dimension_self_x != dimension_another_x or dimension_self_y != dimension_another_y:
-          return []
+            return Matrix([])
 
         sum_matrix = [[0 for _ in range(dimension_self_x)] for _ in range(dimension_self_y)]
 
@@ -27,7 +28,7 @@ class Matrix:
             for cell_key in range(dimension_self_x):
                 sum_matrix[row_key][cell_key] = self.data[row_key][cell_key] + another_matrix[row_key][cell_key]
 
-        return sum_matrix
+        return Matrix(sum_matrix)
 
 
 matrix = Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
